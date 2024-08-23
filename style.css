@@ -1,0 +1,528 @@
+header {
+    background-color: #eaeaf1;
+    color: #004499;
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/*-------кнопки--------*/
+button {
+    background-color: #004499;
+    color: #fff;
+    border: none;
+    padding: 13px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #004499;
+}
+
+img {
+    width: 600px; 
+    height: 400px;
+    border-radius: 5px;
+}
+
+/*-----------соц сети------------*/
+.link {
+    position: relative;
+    display: inline-block;
+}
+
+.link + .link {
+    margin-top: 20px; 
+} 
+
+.link-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%; 
+    left: 0; 
+}
+
+.link-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block; 
+}
+
+.link-content a:hover {
+    background-color: #fff;
+}
+
+.link:hover .link-content {
+    display: block;
+}
+
+.link-content a img {
+    max-width: 20px; 
+    max-height: 22px; 
+    display: block;
+    margin: auto; 
+    border-radius: 5px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: (2, 3fr); 
+    gap: 10px;
+    padding: 10px;
+}
+
+.grid-item {
+    position: relative;
+    background-color: #eaeaf1;
+    padding: 10px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.grid-item:nth-child(1) {
+    grid-column: span 2;
+}
+
+/*----------------навигация----------*/
+.nav {
+    background-color: #eaeaf1;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:80%;
+    width: 240px;
+    overflow-y: auto;
+    padding-top: 40px;
+    margin-top: 181px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}    
+
+.nav.active {
+    transform: translateX(0);
+}
+
+.dropbtn {
+    background-color: #004499;
+    color: white;
+    padding: 14px;
+    font-size: 13px;
+    border: none;
+    width: 170px; 
+    height: 50px;     
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown + .dropdown {
+    margin-top: 20px; 
+} 
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 170px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    overflow-y: auto; 
+    max-height: 300px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #0653b4;
+}
+
+/*------окно-0---------*/
+#location-info{
+    position: absolute;
+    opacity: 1; 
+    top: 0;
+    right: 0%; 
+    width: 78%;
+    background-color: #eaeaf1;;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    margin-top: 181px;
+    display: none;
+}
+#location-content {
+    display: flex;
+}
+
+#location-image {
+    width: 56%; 
+    height: 80%; 
+    margin-top: 15px;
+    display: flex;
+}
+
+#location-description { 
+    margin-left: 23px;
+    font-size: 1.25vw; 
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none;
+}
+
+/*---------маркера-------------*/
+.marker {
+    position: absolute;
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
+    background-color: #004499; 
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 1.0s ease; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+}
+
+.marker:hover {
+    transform: scale(1.2);
+    width: 50px; 
+    height: 50px; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.marker::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #004499;
+    z-index: 0; 
+}
+
+.marker:hover::before {
+    background-color: transparent;
+}
+
+/*--вид маркеров при наведении---*/
+.marker:hover .location-name {
+    display: block;
+}
+
+.location-name {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 5px);
+    width: auto ;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.marker.marker1 {
+    background-image: url('jpg/вхідхду.jpg');
+    left: 60%;
+    top: 52%; 
+}
+.marker.marker2 {
+    background-image: url('jpg/парк2.jpg'); 
+    left: 54%;
+    top: 52%;
+}
+.marker.marker3{
+    background-image:url('jpg/ліцей.jpg') ;
+    left: 75%; 
+    top: 70%;
+}
+.marker.marker4 {
+    background-image: url('jpg/басейнвхід.jpg');
+    left: 60%;
+    top: 77%; 
+}
+.marker.marker5 {
+    background-image: url('jpg/футбол.jpg');
+    left: 53%;
+    top: 77%; 
+}
+
+.marker.marker6 {
+    background-image: url('jpg/меморіал.jpg');
+    left: 56%;
+    top: 63%; 
+}
+.marker.marker7{
+    background-image: url('jpg/комплекс.jpg');
+    left: 53%;
+    top: 38%; 
+}
+.marker.marker8{
+    background-image: url('jpg/ботаніческий.jpg');
+    left: 56%;
+    top: 63%; 
+}
+.marker.marker9{
+    background-image: url('jpg/буревісник.jpg');
+    left: 56%;
+    top: 63%; 
+}
+.marker.marker10{
+    background-image: url('jpg/водна станція.jpg');
+    left: 51%;
+    top: 33%; 
+}
+
+/*-----footer----*/
+footer {
+    background-color: #eaeaf1;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/*---Закрытия окна 0 и навигации----*/
+.nav {
+    transition: transform 0.3s ease;
+}
+
+#location-info {
+    transition: opacity 0.3s ease;
+}
+
+/* Гамбургер меню */
+.hamburger {
+    display: none; 
+    font-size: 30px;
+    cursor: pointer;
+}    
+.hamburger2 {
+    display: none; 
+    font-size: 30px;
+    cursor: pointer;
+} 
+
+
+/*-----адаптация------*/
+
+@media screen and (max-width: 1400px) {
+    .nav {
+        height: 80%;
+        width: 200px;
+    }    
+}       
+@media screen and (max-width: 1200px) {
+    
+} 
+    @media screen and (max-width: 1000px) {
+    .hamburger {
+        display: block;
+        padding-top: 20px;
+}    
+    .nav {
+        transition: transform 0.1s ease;
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #eaeaf1;
+        padding-top: 40px;
+        margin-top: 251px;
+        }
+        
+    .nav.active {
+        transform: translateX(0);
+    }    
+    #location-info {
+        display: none;
+        width: 100%;
+        background-color: #eaeaf1;
+        margin-top: 251px;
+    }  
+    #location-content {
+        display: flex;
+    }
+    
+    #location-image {
+        margin-left: 40px;
+        width: 56%; 
+        height: 80%; 
+        margin-top: 15px;
+        display: flex;
+    }
+    #location-description { 
+        font-size: 1.5vw;
+        line-height: 1.5;
+    }
+}        
+@media screen and (max-width: 800px) {
+    #location-content {
+        display: flex;
+}
+    
+    #location-image {
+        width: 73%; 
+        height: 100%; 
+        margin-top: 15px;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    
+    #location-description { 
+        margin-left: 20px;
+        font-size: 1.9vw;
+        line-height: 1.5;
+    }
+    .grid-container {
+        display: block;
+} 
+    #location-content {
+        display: block;
+}
+}
+    
+        
+@media screen and (max-width: 663px) {  
+    .nav{
+        margin-top: 261px;
+    }
+    #location-info{
+        margin-top: 261px;
+    }   
+    .grid-container {
+        display: block;
+}   
+    #location-description { 
+        margin-left: 20px;
+        font-size: 2.4vw;
+        line-height: 1.5;
+    }
+}    
+            
+@media screen and (max-width: 500px) {  
+    .nav{
+        margin-top: 268px;
+    }
+    #location-info{
+        margin-top: 268px;
+    } 
+    #location-image {
+        width: 80%; 
+        height: 100%; 
+        margin-top: 12px;
+
+
+    }
+}   
+@media screen and (max-width: 465px) {
+    button {
+        padding: 10px 10px;
+        margin: 0 8px;
+        cursor: pointer;
+        border-radius: 5px;
+}    
+    #location-image {
+        width: 82%; 
+        height: 100%; 
+        margin-top: 15px;
+        display: flex;
+        margin-right: 26px;
+
+    }
+    #location-description { 
+        margin-left: 20px;
+        font-size: 2.4vw;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (max-width: 398px) {
+    .nav{
+        margin-top: 1px;
+
+    }   
+    .hamburger2 {
+        display: block;
+        padding-top: 20px;
+        margin-bottom: 20px;
+}     
+    .dropbtn {
+        padding: 10px;
+        font-size: 12px;
+        width: 160px; 
+        height: 40px; 
+        margin-bottom: -20px;
+}    
+    #location-info {
+        display: flex;
+        padding: 20px;
+        margin-top: 340px;
+}
+    #location-image {
+        width: 82%; 
+        height: 100%; 
+        margin-top: 15px;
+        display: flex;
+        margin-right: 10px;
+    }
+    #location-description { 
+        margin-right: -10px;
+        margin-left: 30px;
+        font-size: 2.4vw;
+        line-height: 1.5;
+    }
+    button {
+    margin-bottom: 10px;
+}
+}
